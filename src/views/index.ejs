@@ -1,0 +1,48 @@
+<%-include('includes/head')%>
+<%-include('includes/nav')%>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2">
+
+            </div>
+            <div class="col-lg-8 mt-4">
+                <h1 class="text-center">
+                    Agenda
+                </h1>
+                <p class="text-center lead">
+                    Seus contatos então a baixo
+                </p>
+
+                <% if (contatos.length !== 0) { %>
+                    <%- include('includes/messages') %> 
+                    <div class="responsive-table">
+                        <table class="table">
+                            <thead class="text-center">
+                                <td>Nome</td>
+                                <td>Sobrenome</td>
+                                <td>E-mail</td>
+                                <td>Telefone</td>
+                            </thead>
+                            <% contatos.forEach(contato => { %>
+                                <tr>
+                                    <td><%= contato.nome %> </td>
+                                    <td><%= contato.sobrenome %> </td>
+                                    <td><%= contato.email %> </td>
+                                    <td><%= contato.telefone %> </td>
+                                    <td><a class="btn btn-warning" href="/contato/index/<%=contato._id%>">Alterar</a></td>
+                                    <td><a class="btn btn-danger" href="/contato/delete/<%=contato._id%>">Excuir</a></td>
+                                </tr>
+                            <% }) %>
+                        </table>
+                    </div>
+                <% } else {%>
+                    <p class="lead text-center">Você ainda não possui contatos cadastrados</p>
+                <%}%>
+
+            </div>
+            <div class="col-lg-2">
+
+            </div>
+        </div>
+    </div>
+<%-include('includes/footer')%>

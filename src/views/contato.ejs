@@ -1,0 +1,57 @@
+<%-include('includes/head')%>
+<%-include('includes/nav')%>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2">
+
+            </div>
+            <div class="col-lg-8 mt-4">
+                <h1 class="text-center">
+                    Lista de contatos
+                </h1>
+                <p class="text-center lead">
+                    Crie ou edite seus contatos abaixo.
+                </p>
+                <%- include('includes/messages') %> 
+                <div class="col-lg">
+                    <% if (contato._id) { %>
+                        <form action="/contato/edit/<%=contato._id%>" method="post">
+                    <% } else { %>
+                        <form action="/contato/register" method="post">
+                    <% } %>
+                        <div class="form-floating mb-3">
+                            <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                            <input type="text" name="nome" class="form-control" value="<%= contato.nome %>" id="floatingInputName"
+                                placeholder="Digite o nome">
+                            <label for="floatingInputName">Nome</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" name="sobrenome" class="form-control" value="<%= contato.sobrenome %>" id="floatingPasswordSobrenome"
+                                placeholder="Digite o sobrenome">
+                            <label for="floatingPasswordSobrenome">Sobrenome</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" name="email" class="form-control" value="<%= contato.email %>" id="floatingPasswordEmail"
+                                placeholder="Digite o email">
+                            <label for="floatingPasswordEmail">E-mail</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" name="telefone" class="form-control" value="<%= contato.telefone %>" id="floatingPasswordTelefone"
+                                placeholder="Digite o telefone">
+                            <label for="floatingPasswordTelefone">Telefone</label>
+                        </div>
+                        <% if (contato._id) { %>
+                                <button type="submit" class="btn btn-secondary">Alterar contato</button>
+                            <% } else { %>
+                                <button type="submit" class="btn btn-primary">Criar contato</button>
+                        <% } %>
+                        
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-2">
+
+            </div>
+        </div>
+    </div>
+<%-include('includes/footer')%>
